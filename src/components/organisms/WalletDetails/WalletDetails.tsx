@@ -2,8 +2,8 @@ import Image from "next/image";
 
 import { IWalletDetails } from '@core/interfaces';
 import { messages } from "@utils";
-import etherLogo from "../../../../public/ether.png";
-import userImage from "../../../../public/llama2.jpg";
+import etherLogo from "../../../assets/images/ether.png";
+import userImage from "../../../assets/images/llama2.jpg";
 
 const WalletDetails: React.FC<IWalletDetails> = ({
 	currentAccount,
@@ -48,7 +48,7 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 					</button>
 				</div>
 			) : (
-				<div className="skills">
+				<div className="account-details">
 					<h6>Your ether</h6>
 					<ul>
 						<li>Account</li>

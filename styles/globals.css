@@ -97,20 +97,20 @@ p {
     color: #c400d7;
 }
 
-.skills {
+.account-details {
     background-color: #1f1e36;
     text-align: left;
     padding: 15px;
     margin-top: 30px;
 }
 
-.skills ul {
+.account-details ul {
     list-style-type: none;
     maring: 0;
     padding: 0;
 }
 
-.skills ul li {
+.account-details ul li {
     border: 1px solid #2d2747;
     border-radius: 2px;
     display: inline-block;

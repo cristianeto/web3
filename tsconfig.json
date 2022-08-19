@@ -16,17 +16,23 @@
         "incremental": true,
         "baseUrl": ".",
         "paths": {
-            "@core/interfaces": ["/src/interfaces/index.ts"],
-            "@utils": ["/src/utils/index.ts"],
+            "@core/interfaces": ["src/interfaces/index.ts"],
+            "@core/interfaces/*": ["src/interfaces/*"],
+            "@utils": ["src/utils/index.ts"],
             "@atoms/*": [
-                "/src/components/atoms/*"
+                "src/components/atoms/*"
             ],
             "@molecules/*": [
-                "/src/components/molecules/*"
+                "src/components/molecules/*"
+            ],
+            "@organisms": [
+                "src/components/organisms/index.ts"
             ],
             "@organisms/*": [
-                "/src/components/organisms/*"
+                "src/components/organisms/*"
             ],
+            "@hooks": ["src/hooks/index.ts"],
+            "@hooks/*": ["src/hooks/*"],
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "additional.d.ts"],
