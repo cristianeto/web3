@@ -56,6 +56,13 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 						<li>Balance</li>
 						<li>{balance}</li>
 					</ul>
+					<input name="addressTo" placeholder="Enter an address to send ETHs" />
+					<br />
+					<div className="buttons">
+						<button className="primary ghost" onClick={() => { }}>
+							Send 0.1 ETHs
+						</button>
+					</div>
 				</div>
 			)}
 		</>
