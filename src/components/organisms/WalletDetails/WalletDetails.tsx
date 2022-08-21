@@ -50,7 +50,10 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 					</button>
 				</div>
 			) : (
-				<WalletForm onChange={onChange} receiverAddress={receiverAddress} startPayment={startPayment} />
+				<WalletForm
+					onChange={onChange}
+					receiverAddress={receiverAddress}
+					startPayment={startPayment} />
 			)}
 		</>
 	)

@@ -2,7 +2,11 @@ import React from 'react'
 
 import { IWalletForm } from '@core/interfaces'
 
-const WalletForm: React.FC<IWalletForm> = ({ onChange, receiverAddress, startPayment }) => {
+const WalletForm: React.FC<IWalletForm> = ({
+    onChange,
+    receiverAddress,
+    startPayment
+}) => {
     return (
         <div className="content-form">
             <input onChange={onChange} value={receiverAddress} type="text" name="addressTo" placeholder="Enter an address to send ETHs" />

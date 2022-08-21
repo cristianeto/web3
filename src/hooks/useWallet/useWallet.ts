@@ -5,7 +5,10 @@ import { messages } from '@utils';
 const DEFAULT_ETHS_TO_SEND = "0.001";
 const INFURA_URL = `${process.env.NEXT_PUBLIC_INFURA_URL_RINKEBY}`;
 
-const useWallet = (receiverAddress: string) => {
+const useWallet = (
+  receiverAddress: string,
+  setReceiverAddress: (value: string) => void
+) => {
     const [currentAccount, setCurrentAccount] = useState("");
     const [isConnected, setIsConnected] = useState(false);
     const [balance, setBalance] = useState("");
@@ -18,30 +21,37 @@ const useWallet = (receiverAddress: string) => {
     });
   };
 
-    const getBalance = async () => {
-        const address = currentAccount;
-        const balance = await provider.getBalance(address);
-        const formatedBalance = `${ethers.utils.formatEther(balance)} ETH`;
-        return formatedBalance;
-    }
+  const getBalance = async () => {
+      const address = currentAccount;
+      const balance = await provider.getBalance(address);
+      const formatedBalance = `${ethers.utils.formatEther(balance)} ETH`;
+      return formatedBalance;
+  }
+
   const checkIfWalletIsConnected = async () => {
     if (!window.ethereum) return;
-    const accounts = await getAccounts();
-
-    if (!accounts.length) return messages.fail;
-    setCurrentAccount(accounts[0]);
-    const formatedBalance = await getBalance();
-    setBalance(formatedBalance);
+    try {
+      const accounts = await getAccounts();
+      if (!accounts.length) return messages.fail;
+      setCurrentAccount(accounts[0]);
+      const formatedBalance = await getBalance();
+      setBalance(formatedBalance);
+    } catch (error) {
+      alert(error)
+    }
   };
 
   const loginWallet = async () => {
     if (!window.ethereum) return console.log(messages.fail);
-
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    setCurrentAccount(accounts[0]);
-    setIsConnected(true);
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setCurrentAccount(accounts[0]);
+      setIsConnected(true);
+    } catch (error) {
+      alert(error)
+    }
   };
 
   const startPayment = async () => {
@@ -55,9 +65,9 @@ const useWallet = (receiverAddress: string) => {
         to: receiverAddress,
         value: ethers.utils.parseEther(DEFAULT_ETHS_TO_SEND),
       });
-      console.log("transacction: ", transacction);
+      setReceiverAddress("");
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 

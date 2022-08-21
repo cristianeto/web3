@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     loginWallet,
     startPayment,
     switchAccount
-  } = useWallet(receiverAddress);
+  } = useWallet(receiverAddress, setReceiverAddress);
 
   useEffect(() => {
     checkIfWalletIsConnected();
