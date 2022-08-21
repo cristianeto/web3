@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { IWalletDetails } from '@core/interfaces';
 import { messages } from "@utils";
+import { WalletForm } from "@organisms";
 import etherLogo from "../../../assets/images/ether.png";
 import userImage from "../../../assets/images/llama2.jpg";
 
@@ -9,7 +10,10 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 	currentAccount,
 	isConnected,
 	loginWallet,
-	balance
+	balance,
+	onChange,
+	receiverAddress,
+	startPayment,
 }) => {
 	return (
 		<>
@@ -46,15 +50,7 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 					</button>
 				</div>
 			) : (
-				<div className="content-form">
-					<input type="text" name="addressTo" placeholder="Enter an address to send ETHs" />
-					<br />
-					<div className="buttons">
-						<button className="primary ghost" onClick={() => { }}>
-							Send 0.001 ETH
-						</button>
-					</div>
-				</div>
+				<WalletForm onChange={onChange} receiverAddress={receiverAddress} startPayment={startPayment} />
 			)}
 		</>
 	)
