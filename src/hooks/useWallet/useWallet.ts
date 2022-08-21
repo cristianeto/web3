@@ -12,6 +12,7 @@ const useWallet = (
     const [currentAccount, setCurrentAccount] = useState("");
     const [isConnected, setIsConnected] = useState(false);
     const [balance, setBalance] = useState("");
+    const [txList, setTxList] = useState<ethers.providers.TransactionResponse[]>([]);
 
     const provider = new ethers.providers.JsonRpcProvider(INFURA_URL);
 
@@ -48,6 +49,7 @@ const useWallet = (
         method: "eth_requestAccounts",
       });
       setCurrentAccount(accounts[0]);
+      getTxHistory(currentAccount);
       setIsConnected(true);
     } catch (error) {
       alert(error)
@@ -61,21 +63,34 @@ const useWallet = (
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       ethers.utils.getAddress(receiverAddress);
-      const transacction = await signer.sendTransaction({
+      await signer.sendTransaction({
         to: receiverAddress,
         value: ethers.utils.parseEther(DEFAULT_ETHS_TO_SEND),
       });
+      alert("OK. 0.001 ETHs were sent to " + receiverAddress)
       setReceiverAddress("");
     } catch (error) {
       alert(error);
     }
   };
 
+  const getTxHistory = async (myAddress: string) =>{
+    if (!window.ethereum) return console.log(messages.fail);
+    try {
+      let etherscanProvider = new ethers.providers.EtherscanProvider(4);
+      const history = await etherscanProvider.getHistory(myAddress);
+      setTxList(history);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   async function switchAccount() {
     window.ethereum.on("accountsChanged", async function () {
       const accounts = await getAccounts();
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
+        getTxHistory(currentAccount);
       } else {
         window.location.reload();
       }
@@ -86,10 +101,12 @@ const useWallet = (
         balance,
         currentAccount,
         checkIfWalletIsConnected,
+        getTxHistory,
         isConnected,
         loginWallet,
         startPayment,
         switchAccount,
+        txList,
     };
 }
 

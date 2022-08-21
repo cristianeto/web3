@@ -16,7 +16,7 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 	startPayment,
 }) => {
 	return (
-		<>
+		<div>
 			{!currentAccount ? "" : <span className="pro">Pro</span>}
 			<Image src={userImage} alt="avatar" width={80} height={80} />
 			{!currentAccount ? (
@@ -55,7 +55,7 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 					receiverAddress={receiverAddress}
 					startPayment={startPayment} />
 			)}
-		</>
+		</div>
 	)
 }
 
