@@ -15,7 +15,6 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 		<>
 			{!currentAccount ? "" : <span className="pro">Pro</span>}
 			<Image src={userImage} alt="avatar" width={80} height={80} />
-			<h3>Check Ether</h3>
 			{!currentAccount ? (
 				<div>
 					<div className="message">
@@ -30,13 +29,12 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 					<p>Welcome to your ether account balance checker</p>
 				</div>
 			) : (
-				<div>
+				<div className="account-details">
 					<h6>Verified <span className="tick">&#10004;</span></h6>
-					<p>Ether account and balance checker <br /> find account details</p>
-					<div className="buttons">
-						<button className="primary ghost" onClick={() => { }}>
-							Ether Account Details
-						</button>
+					<span className="eths">{balance}</span>
+					<div>
+						<span>Your address account:</span><br />
+						<small>{currentAccount}</small>
 					</div>
 				</div>
 			)}
@@ -48,19 +46,12 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 					</button>
 				</div>
 			) : (
-				<div className="account-details">
-					<h6>Your ether</h6>
-					<ul>
-						<li>Account</li>
-						<li>{currentAccount}</li>
-						<li>Balance</li>
-						<li>{balance}</li>
-					</ul>
-					<input name="addressTo" placeholder="Enter an address to send ETHs" />
+				<div className="content-form">
+					<input type="text" name="addressTo" placeholder="Enter an address to send ETHs" />
 					<br />
 					<div className="buttons">
 						<button className="primary ghost" onClick={() => { }}>
-							Send 0.1 ETHs
+							Send 0.001 ETH
 						</button>
 					</div>
 				</div>
