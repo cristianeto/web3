@@ -4,7 +4,7 @@ export interface IWalletDetails {
     balance: string;
     currentAccount: string;
     isConnected: boolean;
-    loginWallet: ()=> void;
+    loginWallet: () => void;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     receiverAddress: string;
     startPayment: () => void;
@@ -18,4 +18,8 @@ export interface IWalletForm {
 
 export interface ITransactionList {
     data: ethers.providers.TransactionResponse[];
+}
+
+export interface IOwnersList {
+    deployNewSafe: () => void;
 }

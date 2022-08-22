@@ -43,6 +43,13 @@ p {
     margin-botom: 1rem;
 }
 
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .card-container {
     background-color: #231e39;
     border-radius: 25px;
@@ -50,7 +57,7 @@ p {
     color: #b3b8cd;
     padding: 30px 0 0;
     position: relative;
-    /* width: 350px; */
+    width: 350px;
     max-width: 100%;
     display:flex;
     text-align: center;
@@ -154,4 +161,20 @@ input[type=text], select {
   text-align: left;
   background-color: #231e39;
   color: white;
+}
+
+.setup {
+    background-color: #c400d7;
+    border: 1px solid #c400d7;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 500;
+    padding: 10px 25px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-gnosis {
+    flex-wrap:wrap;
+    padding: 2rem;
 }

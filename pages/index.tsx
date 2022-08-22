@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import type { NextPage } from "next";
 
-import { useWallet } from '@hooks';
-import { TransactionList, WalletDetails } from "@organisms";
+import { useSafe, useWallet } from '@hooks';
+import { OwnersList, TransactionList, WalletDetails } from "@organisms";
 
 const Home: NextPage = () => {
   const [receiverAddress, setReceiverAddress] = useState<string>("");
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     setReceiverAddress(target.value);
   }
-
+  const { deployNewSafe } = useSafe();
   const {
     balance,
     checkIfWalletIsConnected,
@@ -36,20 +37,23 @@ const Home: NextPage = () => {
   }, [currentAccount, getTxHistory])
 
   return (
-    <>
-      <div className="card-container">
-        <WalletDetails
-          balance={balance}
-          currentAccount={currentAccount}
-          isConnected={isConnected}
-          loginWallet={loginWallet}
-          onChange={handleChange}
-          receiverAddress={receiverAddress}
-          startPayment={startPayment}
-        />
+    <div className="container">
+      <div>
+        <div className="card-container">
+          <WalletDetails
+            balance={balance}
+            currentAccount={currentAccount}
+            isConnected={isConnected}
+            loginWallet={loginWallet}
+            onChange={handleChange}
+            receiverAddress={receiverAddress}
+            startPayment={startPayment}
+          />
+        </div>
         {currentAccount !== "" && <TransactionList data={txList} />}
       </div>
-    </>
+      <OwnersList deployNewSafe={deployNewSafe} />
+    </div>
   );
 };
 

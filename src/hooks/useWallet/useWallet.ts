@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ethers } from 'ethers';
+
 import { messages } from '@utils';
 
 const DEFAULT_ETHS_TO_SEND = "0.001";
@@ -9,24 +10,24 @@ const useWallet = (
   receiverAddress: string,
   setReceiverAddress: (value: string) => void
 ) => {
-    const [currentAccount, setCurrentAccount] = useState("");
-    const [isConnected, setIsConnected] = useState(false);
-    const [balance, setBalance] = useState("");
-    const [txList, setTxList] = useState<ethers.providers.TransactionResponse[]>([]);
+  const [currentAccount, setCurrentAccount] = useState("");
+  const [isConnected, setIsConnected] = useState(false);
+  const [balance, setBalance] = useState("");
+  const [txList, setTxList] = useState<ethers.providers.TransactionResponse[]>([]);
 
-    const provider = new ethers.providers.JsonRpcProvider(INFURA_URL);
+  const provider = new ethers.providers.JsonRpcProvider(INFURA_URL);
 
-    const getAccounts = async () => {
-        return await window.ethereum.request({
-        method: "eth_accounts",
+  const getAccounts = async () => {
+    return await window.ethereum.request({
+      method: "eth_accounts",
     });
   };
 
   const getBalance = async () => {
-      const address = currentAccount;
-      const balance = await provider.getBalance(address);
-      const formatedBalance = `${ethers.utils.formatEther(balance)} ETH`;
-      return formatedBalance;
+    const address = currentAccount;
+    const balance = await provider.getBalance(address);
+    const formatedBalance = `${ethers.utils.formatEther(balance)} ETH`;
+    return formatedBalance;
   }
 
   const checkIfWalletIsConnected = async () => {
@@ -60,7 +61,7 @@ const useWallet = (
     if (!window.ethereum) return console.log(messages.fail)
     try {
       await window.ethereum.send('eth_requestAccounts');
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      // const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       ethers.utils.getAddress(receiverAddress);
       await signer.sendTransaction({
@@ -74,14 +75,14 @@ const useWallet = (
     }
   };
 
-  const getTxHistory = async (myAddress: string) =>{
+  const getTxHistory = async (myAddress: string) => {
     if (!window.ethereum) return console.log(messages.fail);
     try {
       let etherscanProvider = new ethers.providers.EtherscanProvider(4);
       const history = await etherscanProvider.getHistory(myAddress);
       setTxList(history);
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
 
@@ -97,17 +98,17 @@ const useWallet = (
     });
   }
 
-    return {
-        balance,
-        currentAccount,
-        checkIfWalletIsConnected,
-        getTxHistory,
-        isConnected,
-        loginWallet,
-        startPayment,
-        switchAccount,
-        txList,
-    };
+  return {
+    balance,
+    currentAccount,
+    checkIfWalletIsConnected,
+    getTxHistory,
+    isConnected,
+    loginWallet,
+    startPayment,
+    switchAccount,
+    txList,
+  };
 }
 
 export default useWallet;
