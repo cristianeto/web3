@@ -20,6 +20,7 @@
             "@core/interfaces/*": ["src/interfaces/*"],
             "@utils":       ["src/utils/index.ts"],
             "@atoms/*":     ["src/components/atoms/*"],
+            "@molecules":   ["src/components/molecules/index.ts"],
             "@molecules/*": ["src/components/molecules/*"],
             "@organisms":   ["src/components/organisms/index.ts"],
             "@organisms/*": ["src/components/organisms/*"],

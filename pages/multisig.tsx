@@ -10,7 +10,6 @@ const Multisig: NextPage = () => {
 
     return (
         <PublicLayout>
-            <h1>Multisig</h1>
             <OwnersList deployNewSafe={deployNewSafe} />
         </PublicLayout>
     )

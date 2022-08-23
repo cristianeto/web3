@@ -178,3 +178,29 @@ input[type=text], select {
     flex-wrap:wrap;
     padding: 2rem;
 }
+
+.navbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.navbar .navbar-container {
+    display: flex;
+}
+
+.navbar .navbar-container .item {
+    color: #fff;
+    margin: 1rem;
+}
+
+.navbar .navbar-container .active{
+    color: yellowgreen;
+    margin: 1rem;
+}
+
+.navbar .navbar-container .item: hover {
+    color: yellowgreen; 
+    margin: 1rem;
+}

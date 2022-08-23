@@ -1,9 +1,12 @@
 import { IPublicLayout } from '@core/interfaces'
-import React from 'react'
+import { Navbar } from '@molecules';
 
 const PublicLayout: React.FC<IPublicLayout> = ({ children }) => {
     return (
-        <div className='container'>{children}</div>
+        <div className='container'>
+            <Navbar />
+            {children}
+        </div>
     )
 }
 
