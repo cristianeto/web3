@@ -20,10 +20,23 @@ export interface ITransactionList {
     data: ethers.providers.TransactionResponse[];
 }
 
-export interface IOwnersList {
+export interface IOwnersAddForm {
+    addNewField: () => void;
     deployNewSafe: () => void;
+    formValues: IFormOwners[];
+    handleChange: (index: number, e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IPublicLayout {
     children: React.ReactNode;
+}
+
+export interface IFormOwners {
+    name: string;
+    value: string;
+}
+
+export interface IOwnersList {
+    data: string[];
+    isLoading: boolean;
 }

@@ -39,7 +39,7 @@ const useWallet = (
       const formatedBalance = await getBalance();
       setBalance(formatedBalance);
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   };
 
