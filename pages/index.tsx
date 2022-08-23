@@ -1,18 +1,18 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 
+import { TransactionList, WalletDetails } from "@organisms";
+import { PublicLayout } from '@layouts';
 import { useSafe, useWallet } from '@hooks';
-import { OwnersList, TransactionList, WalletDetails } from "@organisms";
 
 const Home: NextPage = () => {
   const [receiverAddress, setReceiverAddress] = useState<string>("");
-
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     setReceiverAddress(target.value);
   }
-  const { deployNewSafe, safe } = useSafe();
+
   const {
     balance,
     checkIfWalletIsConnected,
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
   }, [currentAccount, getTxHistory])
 
   return (
-    <div className="container">
+    <PublicLayout>
       <div>
         <div className="card-container">
           <WalletDetails
@@ -52,8 +52,7 @@ const Home: NextPage = () => {
         </div>
         {currentAccount !== "" && <TransactionList data={txList} />}
       </div>
-      <OwnersList deployNewSafe={deployNewSafe} />
-    </div>
+    </PublicLayout>
   );
 };
 

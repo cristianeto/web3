@@ -23,3 +23,7 @@ export interface ITransactionList {
 export interface IOwnersList {
     deployNewSafe: () => void;
 }
+
+export interface IPublicLayout {
+    children: React.ReactNode;
+}
