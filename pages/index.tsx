@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 
-import { useWallet } from '@hooks';
 import { TransactionList, WalletDetails } from "@organisms";
+import { PublicLayout } from '@layouts';
+import { useSafe, useWallet } from '@hooks';
 
 const Home: NextPage = () => {
   const [receiverAddress, setReceiverAddress] = useState<string>("");
@@ -32,24 +33,27 @@ const Home: NextPage = () => {
     switchAccount();
   });
   useEffect(() => {
-    getTxHistory(currentAccount);
+    if (currentAccount !== "")
+      getTxHistory(currentAccount);
   }, [currentAccount, getTxHistory])
 
   return (
-    <>
-      <div className="card-container">
-        <WalletDetails
-          balance={balance}
-          currentAccount={currentAccount}
-          isConnected={isConnected}
-          loginWallet={loginWallet}
-          onChange={handleChange}
-          receiverAddress={receiverAddress}
-          startPayment={startPayment}
-        />
+    <PublicLayout>
+      <div>
+        <div className="card-container">
+          <WalletDetails
+            balance={balance}
+            currentAccount={currentAccount}
+            isConnected={isConnected}
+            loginWallet={loginWallet}
+            onChange={handleChange}
+            receiverAddress={receiverAddress}
+            startPayment={startPayment}
+          />
+        </div>
         {currentAccount !== "" && <TransactionList data={txList} />}
       </div>
-    </>
+    </PublicLayout>
   );
 };
 

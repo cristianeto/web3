@@ -14,25 +14,20 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
-        "baseUrl": ".",
+        "baseUrl": "./",
         "paths": {
             "@core/interfaces": ["src/interfaces/index.ts"],
             "@core/interfaces/*": ["src/interfaces/*"],
-            "@utils": ["src/utils/index.ts"],
-            "@atoms/*": [
-                "src/components/atoms/*"
-            ],
-            "@molecules/*": [
-                "src/components/molecules/*"
-            ],
-            "@organisms": [
-                "src/components/organisms/index.ts"
-            ],
-            "@organisms/*": [
-                "src/components/organisms/*"
-            ],
-            "@hooks": ["src/hooks/index.ts"],
-            "@hooks/*": ["src/hooks/*"],
+            "@utils":       ["src/utils/index.ts"],
+            "@atoms/*":     ["src/components/atoms/*"],
+            "@molecules":   ["src/components/molecules/index.ts"],
+            "@molecules/*": ["src/components/molecules/*"],
+            "@organisms":   ["src/components/organisms/index.ts"],
+            "@organisms/*": ["src/components/organisms/*"],
+            "@hooks":       ["src/hooks/index.ts"],
+            "@hooks/*":     ["src/hooks/*"],
+            "@layouts":     ["src/components/layouts/index.ts"],
+            "@layouts/*":   ["src/components/layouts/*"],
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "additional.d.ts"],
