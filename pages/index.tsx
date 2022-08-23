@@ -33,7 +33,8 @@ const Home: NextPage = () => {
     switchAccount();
   });
   useEffect(() => {
-    getTxHistory(currentAccount);
+    if (currentAccount !== "")
+      getTxHistory(currentAccount);
   }, [currentAccount, getTxHistory])
 
   return (

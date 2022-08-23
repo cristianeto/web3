@@ -17,7 +17,6 @@ const WalletDetails: React.FC<IWalletDetails> = ({
 }) => {
 	return (
 		<div>
-			{!currentAccount ? "" : <span className="pro">Pro</span>}
 			<Image src={userImage} alt="avatar" width={80} height={80} />
 			{!currentAccount ? (
 				<div>
