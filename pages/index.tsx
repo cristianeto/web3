@@ -12,7 +12,7 @@ const Home: NextPage = () => {
     const { target } = event;
     setReceiverAddress(target.value);
   }
-  const { deployNewSafe } = useSafe();
+  const { deployNewSafe, safe } = useSafe();
   const {
     balance,
     checkIfWalletIsConnected,
